@@ -1,9 +1,9 @@
 {
 	"id": "simple-sketch",
 	"name": "simple-sketch",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"minAppVersion": "0.15.0",
-	"description": "A simple sketch plugin for Obsidian.",
+	"description": "A simple sketch plugin.",
 	"author": "Yoh",
 	"authorUrl": "https://github.com/Yohh",
 	"fundingUrl": "",
