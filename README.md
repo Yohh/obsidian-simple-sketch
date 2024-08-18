@@ -29,6 +29,12 @@ Simple Sketch is a plugin for [Obsidian](https://obsidian.md). It allows users t
     npm run build
     ```
 
+    For nix users: you can use the provided `flake.nix` file to set up the development environment with Nix:
+
+    ```sh
+    nix develop
+    ```
+
 5. Run the project:
 
     ```sh
