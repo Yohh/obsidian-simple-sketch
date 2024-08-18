@@ -2,7 +2,7 @@
 
 ## Overview
 
-Simple Sketch is a plugin for [Obsidian](https://obsidian.md). It allows users to create simple sketches within their notes with a minimal, convenient interface that emphasizes productivity over completeness.
+Simple Sketch is a plugin for [Obsidian](https://obsidian.md). It allows users to create simple sketches in a dedicated view with a minimal, convenient interface that emphasizes productivity over completeness.
 
 ## Installation
 
