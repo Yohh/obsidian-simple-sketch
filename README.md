@@ -73,7 +73,7 @@ Stay tuned for updates and feel free to contribute to these features!
 
 ## Support
 
-If you encounter any issues or have any questions, please open an issue on the [GitHub repository](https://github.com/your-repo/simple-sketch-plugin/issues).
+If you encounter any issues or have any questions, please open an issue on the [GitHub repository](https://github.com/Yohh/obsidian-simple-sketch/issues).
 
 ## License
 
