@@ -47,7 +47,7 @@ Simple Sketch is a plugin for [Obsidian](https://obsidian.md) that demonstrates 
 
 1. Open Obsidian and navigate to the settings.
 2. Go to the "Community plugins" section and enable the Simple Sketch Plugin.
-3. Use the plugin to create and edit sketches within your notes.
+3. Use the plugin to create and edit sketches.
 
 ## Contribution
 
