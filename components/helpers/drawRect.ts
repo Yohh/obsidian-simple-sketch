@@ -1,5 +1,5 @@
-import { Store } from "components/CanvasSketch";
 import { clearCanvas } from "./clearCanvas";
+import type { Store } from "../types";
 
 export const drawRect = (
 	canvas: HTMLCanvasElement,

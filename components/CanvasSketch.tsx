@@ -8,30 +8,24 @@ import {
 	drawLine,
 } from "../components/helpers/index";
 import Panel from "../components/sidePanel/Panel";
+import type { DrawMethod, Store } from "./types";
 
 const CANVAS_WIDTH = 827;
 const CANVAS_HEIGHT = 1170;
 const GRID_GAP = 30;
-
-export type Store = {
-	primaryColor: string;
-	lineWidth: number;
-	isFilled: boolean;
-	isSaving: boolean;
-};
 
 const CanvasSketch = () => {
 	const canvasGridRef = useRef<HTMLCanvasElement | null>(null);
 	const canvasRef = useRef<HTMLCanvasElement | null>(null);
 	const finalCanvasRef = useRef<HTMLCanvasElement | null>(null);
 
-	const [drawMethod, setDrawMethod] = useState<string>("hand");
+	const [drawMethod, setDrawMethod] = useState<DrawMethod>("hand");
 	const [isDrawing, setIsDrawing] = useState<boolean>(false);
 	const [isShowingGrid, setIsShowingGrid] = useState<boolean>(true);
 
 	const [store, setStore] = useState<Store>({
 		primaryColor: "rgb(0, 0, 0)",
-		lineWidth: 1,
+		lineWidth: 3,
 		isFilled: false,
 		isSaving: false,
 	});
@@ -74,7 +68,7 @@ const CanvasSketch = () => {
 		<div
 			style={{
 				position: "relative",
-				width: "100%",
+				maxWidth: `${CANVAS_WIDTH}px`,
 				height: "100%",
 				overflow: "hidden",
 			}}
@@ -82,7 +76,7 @@ const CanvasSketch = () => {
 			<div
 				style={{
 					position: "absolute",
-					overflow: "scroll",
+					overflow: "auto",
 					width: "100%",
 					height: "100%",
 				}}

@@ -1,4 +1,3 @@
-import { Store } from "components/CanvasSketch";
 import {
 	Eraser,
 	PencilLine,
@@ -8,10 +7,11 @@ import {
 	Circle,
 	CircleDot,
 } from "lucide-react";
+import type { DrawMethod, Store } from "../types";
 
 type DrawButtonsProps = {
-	drawMethod: string;
-	setDrawMethod: (method: string) => void;
+	drawMethod: DrawMethod;
+	setDrawMethod: React.Dispatch<React.SetStateAction<DrawMethod>>;
 	store: Store;
 	setStore: React.Dispatch<React.SetStateAction<Store>>;
 };

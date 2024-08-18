@@ -1,4 +1,4 @@
-import { Store } from "components/CanvasSketch";
+import { Store } from "../types";
 
 export const drawByHand = (
 	canvas: HTMLCanvasElement,
@@ -15,6 +15,19 @@ export const drawByHand = (
 	const handleMouseDown = (e: MouseEvent) => {
 		isDrawingByHand = true;
 		[lastX, lastY] = [e.offsetX, e.offsetY];
+
+		ctx.fillStyle = primaryColor;
+		ctx.beginPath();
+		ctx.ellipse(
+			lastX,
+			lastY,
+			lineWidth / 2,
+			lineWidth / 2,
+			0,
+			0,
+			2 * Math.PI
+		);
+		ctx.fill();
 	};
 
 	const handleMouseMove = (e: MouseEvent) => {
@@ -22,6 +35,7 @@ export const drawByHand = (
 
 		ctx.strokeStyle = primaryColor;
 		ctx.lineWidth = lineWidth;
+		ctx.lineCap = "round";
 		ctx.beginPath();
 		ctx.moveTo(lastX, lastY);
 		ctx.lineTo(e.offsetX, e.offsetY);

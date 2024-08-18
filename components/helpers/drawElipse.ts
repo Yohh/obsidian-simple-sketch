@@ -1,5 +1,5 @@
-import { Store } from "components/CanvasSketch";
 import { clearCanvas } from "./clearCanvas";
+import { Store } from "../types";
 
 export const drawElipse = (
 	canvas: HTMLCanvasElement,

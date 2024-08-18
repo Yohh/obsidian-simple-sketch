@@ -1,5 +1,5 @@
-import { Store } from "../CanvasSketch";
 import { Minus, Paintbrush } from "lucide-react";
+import type { Store } from "../types";
 
 type SetButtonsProps = {
 	store: Store;
@@ -20,7 +20,7 @@ export const SetButtons = ({ store, setStore }: SetButtonsProps) => {
 			style={{
 				position: "absolute",
 				top: "1rem",
-				right: "1.5rem",
+				right: "1rem",
 				display: "flex",
 				flexDirection: "column",
 			}}

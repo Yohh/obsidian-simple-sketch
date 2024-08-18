@@ -2,15 +2,15 @@ import { Trash2, Download, Grid2X2 } from "lucide-react";
 import DrawButtons from "./DrawButtons";
 import SetButtons from "./SetButtons";
 import { clearCanvas } from "components/helpers";
-import { Store } from "components/CanvasSketch";
+import type { DrawMethod, Store } from "components/types";
 
 type PanelProps = {
 	canvas: HTMLCanvasElement | null;
 	finalCanvas: HTMLCanvasElement | null;
 	isShowingGrid: boolean;
 	setIsShowingGrid: (isShowingGrid: boolean) => void;
-	drawMethod: string;
-	setDrawMethod: (method: string) => void;
+	drawMethod: DrawMethod;
+	setDrawMethod: React.Dispatch<React.SetStateAction<DrawMethod>>;
 	store: Store;
 	setStore: React.Dispatch<React.SetStateAction<Store>>;
 };
@@ -71,8 +71,8 @@ const Panel = ({
 				title="Reset"
 				style={{
 					position: "absolute",
-					marginTop: "1rem",
-					marginLeft: "1rem",
+					top: "1rem",
+					left: "1rem",
 				}}
 			>
 				<Trash2 size={24} />
@@ -82,8 +82,8 @@ const Panel = ({
 				title="Toggle grid"
 				style={{
 					position: "absolute",
-					marginTop: "3.5rem",
-					marginLeft: "1rem",
+					top: "3.5rem",
+					left: "1rem",
 					color: isShowingGrid ? "lightgray" : "grey",
 				}}
 			>
