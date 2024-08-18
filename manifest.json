@@ -1,11 +1,11 @@
 {
 	"id": "simple-sketch",
 	"name": "simple-sketch",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"minAppVersion": "0.15.0",
 	"description": "A simple sketch plugin.",
 	"author": "Yoh",
 	"authorUrl": "https://github.com/Yohh",
 	"fundingUrl": "",
-	"isDesktopOnly": false
+	"isDesktopOnly": true
 }
