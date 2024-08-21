@@ -6,6 +6,7 @@ import {
 	SquareDot,
 	Circle,
 	CircleDot,
+	Type,
 } from "lucide-react";
 import type { DrawMethod, Store } from "../types";
 
@@ -135,6 +136,19 @@ const DrawButtons = ({
 				}}
 			>
 				<CircleDot size={24} />
+			</button>
+			<button
+				onClick={() => {
+					setDrawMethod("text");
+					setStore({ ...store, isFilled: false });
+				}}
+				title="Draw text"
+				style={{
+					marginBottom: "0.5rem",
+					color: drawMethod === "text" ? "lightgray" : "grey",
+				}}
+			>
+				<Type size={24} />
 			</button>
 		</div>
 	);

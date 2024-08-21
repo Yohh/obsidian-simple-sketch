@@ -4,9 +4,9 @@ import type { Store } from "../types";
 export const drawRect = (
 	canvas: HTMLCanvasElement,
 	ctx: CanvasRenderingContext2D,
-	_store: Store
+	store: Store
 ) => {
-	const { lineWidth, primaryColor } = _store;
+	const { lineWidth, primaryColor, isFilled } = store;
 
 	let isDrawingRect = false;
 
@@ -52,7 +52,7 @@ export const drawRect = (
 		ctx.setLineDash([]);
 		ctx.beginPath();
 		ctx.rect(startX, startY, width, height);
-		if (_store.isFilled) {
+		if (isFilled) {
 			ctx.fillStyle = primaryColor;
 			ctx.fill();
 		}

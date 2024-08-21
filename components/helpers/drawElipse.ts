@@ -4,9 +4,9 @@ import { Store } from "../types";
 export const drawElipse = (
 	canvas: HTMLCanvasElement,
 	ctx: CanvasRenderingContext2D,
-	_store: Store
+	store: Store
 ) => {
-	const { lineWidth, primaryColor } = _store;
+	const { lineWidth, primaryColor, isFilled } = store;
 
 	let isDrawingElipse = false;
 
@@ -73,7 +73,7 @@ export const drawElipse = (
 			0,
 			2 * Math.PI
 		);
-		if (_store.isFilled) {
+		if (isFilled) {
 			ctx.fillStyle = primaryColor;
 			ctx.fill();
 		}
