@@ -29,12 +29,6 @@ Simple Sketch is a plugin for [Obsidian](https://obsidian.md). It allows users t
     npm run build
     ```
 
-    For nix users: you can use the provided `flake.nix` file to set up the development environment with Nix:
-
-    ```sh
-    nix develop
-    ```
-
 5. Run the project:
 
     ```sh
@@ -71,7 +65,7 @@ I am actively working on the following features and improvements:
 
 -   **Enhanced Drawing Tools**: Adding more shapes and tools for better sketching capabilities.
 -   **Undo/Redo Functionality**: Implementing undo and redo actions to improve user experience.
--   **Export Options**: Allowing users to export their sketches as images or PDFs.
+-   **bugfix**: Fixing issues related to drawing precision and performance.
 
 This plugin is a contribution to the Obsidian community, and I work on it in my free time. As a result, I may be slow to react if anything is asked. Thank you for your understanding and patience.
 
