@@ -1,12 +1,5 @@
-import {
-	Eraser,
-	PencilLine,
-	Slash,
-	Square,
-	SquareDot,
-	Circle,
-	CircleDot,
-} from "lucide-react";
+import { Eraser, PencilLine, Slash, Square, Circle, Type } from "lucide-react";
+import { methods } from "components/consts";
 import type { DrawMethod, Store } from "../types";
 
 type DrawButtonsProps = {
@@ -22,6 +15,45 @@ const DrawButtons = ({
 	store,
 	setStore,
 }: DrawButtonsProps) => {
+	const setIcon = (name: string, isFilled: boolean) => {
+		switch (true) {
+			case name === "Eraser":
+				return <Eraser size={24} />;
+			case name === "PencilLine":
+				return <PencilLine size={24} />;
+			case name === "Slash":
+				return <Slash size={24} />;
+			case name === "Square" && !isFilled:
+				return <Square size={24} />;
+			case name === "Square" && isFilled:
+				return (
+					<Square
+						size={24}
+						fill={`${
+							drawMethod === "rect" && store.isFilled
+								? "lightgray"
+								: "grey"
+						}`}
+					/>
+				);
+			case name === "Circle" && !isFilled:
+				return <Circle size={24} />;
+			case name === "Circle" && isFilled:
+				return (
+					<Circle
+						size={24}
+						fill={`
+					${drawMethod === "elipse" && store.isFilled ? "lightgray" : "grey"}
+					`}
+					/>
+				);
+			case name === "Type":
+				return <Type size={24} />;
+			default:
+				return null;
+		}
+	};
+
 	return (
 		<div
 			style={{
@@ -32,110 +64,32 @@ const DrawButtons = ({
 				flexDirection: "column",
 			}}
 		>
-			<button
-				onClick={() => {
-					setDrawMethod("rubber");
-					setStore({ ...store, isFilled: false });
-				}}
-				title="Rubber"
+			<hr
 				style={{
-					marginBottom: "0.5rem",
-					color: drawMethod === "rubber" ? "lightgray" : "grey",
+					marginTop: "0",
+					marginBottom: "1rem",
 				}}
-			>
-				<Eraser size={24} />
-			</button>
-			<button
-				onClick={() => {
-					setDrawMethod("hand");
-					setStore({ ...store, isFilled: false });
-				}}
-				title="Draw by hand"
-				style={{
-					marginBottom: "0.5rem",
-					color: drawMethod === "hand" ? "lightgray" : "grey",
-				}}
-			>
-				<PencilLine size={24} />
-			</button>
-			<button
-				onClick={() => {
-					setDrawMethod("line");
-					setStore({ ...store, isFilled: false });
-				}}
-				title="Draw line"
-				style={{
-					marginBottom: "0.5rem",
-					color: drawMethod === "line" ? "lightgray" : "grey",
-				}}
-			>
-				<Slash size={24} />
-			</button>
-			<button
-				onClick={() => {
-					setDrawMethod("rect");
-					setStore({ ...store, isFilled: false });
-				}}
-				title="Draw rectangle"
-				style={{
-					marginBottom: "0.5rem",
-					color:
-						drawMethod === "rect" && !store.isFilled
-							? "lightgray"
-							: "grey",
-				}}
-			>
-				<Square size={24} />
-			</button>
-			{/* filled rect */}
-			<button
-				onClick={() => {
-					setDrawMethod("rect");
-					setStore({ ...store, isFilled: true });
-				}}
-				title="Draw filled rectangle"
-				style={{
-					marginBottom: "0.5rem",
-					color:
-						drawMethod === "rect" && store.isFilled
-							? "lightgray"
-							: "grey",
-				}}
-			>
-				<SquareDot size={24} />
-			</button>
-			<button
-				onClick={() => {
-					setDrawMethod("elipse");
-					setStore({ ...store, isFilled: false });
-				}}
-				title="Draw elipse"
-				style={{
-					marginBottom: "0.5rem",
-					color:
-						drawMethod === "elipse" && !store.isFilled
-							? "lightgray"
-							: "grey",
-				}}
-			>
-				<Circle size={24} />
-			</button>
-			<button
-				onClick={() => {
-					setDrawMethod("elipse");
-					setStore({ ...store, isFilled: true });
-				}}
-				title="Draw filled elipse"
-				style={{
-					marginBottom: "0.5rem",
-					color:
-						drawMethod === "elipse" && store.isFilled
-							? "lightgray"
-							: "grey",
-				}}
-			>
-				<CircleDot size={24} />
-			</button>
+			/>
+			{methods.map((method) => (
+				<button
+					key={method.title}
+					onClick={() => {
+						setDrawMethod(method.name);
+						setStore({ ...store, isFilled: method.isFilled });
+					}}
+					title={method.title}
+					style={{
+						marginBottom: "0.5rem",
+						color:
+							drawMethod === method.name &&
+							store.isFilled === method.isFilled
+								? "lightgray"
+								: "grey",
+					}}
+				>
+					{setIcon(method.icon, method.isFilled)}
+				</button>
+			))}
 		</div>
 	);
 };

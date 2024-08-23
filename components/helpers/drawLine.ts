@@ -1,4 +1,5 @@
 import { clearCanvas } from "./clearCanvas";
+import { colors } from "../consts";
 import type { Store } from "../types";
 
 export const drawLine = (
@@ -23,7 +24,9 @@ export const drawLine = (
 
 		clearCanvas(canvas, ctx);
 
-		ctx.strokeStyle = "rgba(0, 0, 0, 0.5)";
+		ctx.strokeStyle = colors.find(
+			(color) => color.rgb === primaryColor
+		)?.rgba!;
 		ctx.lineWidth = lineWidth;
 		ctx.setLineDash([5, 5]);
 		ctx.beginPath();

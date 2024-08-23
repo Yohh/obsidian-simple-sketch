@@ -1,12 +1,13 @@
 import { clearCanvas } from "./clearCanvas";
+import { colors } from "../consts";
 import { Store } from "../types";
 
 export const drawElipse = (
 	canvas: HTMLCanvasElement,
 	ctx: CanvasRenderingContext2D,
-	_store: Store
+	store: Store
 ) => {
-	const { lineWidth, primaryColor } = _store;
+	const { lineWidth, primaryColor, isFilled } = store;
 
 	let isDrawingElipse = false;
 
@@ -30,7 +31,9 @@ export const drawElipse = (
 		width = e.offsetX - startX;
 		height = e.offsetY - startY;
 
-		ctx.strokeStyle = "rgba(0, 0, 0, 0.5)";
+		ctx.strokeStyle = colors.find(
+			(color) => color.rgb === primaryColor
+		)?.rgba!;
 		ctx.lineWidth = lineWidth;
 		ctx.setLineDash([5, 5]);
 		ctx.beginPath();
@@ -45,7 +48,9 @@ export const drawElipse = (
 		);
 		ctx.stroke();
 
-		ctx.strokeStyle = "rgba(0, 0, 0, 0.3)";
+		ctx.strokeStyle = colors.find(
+			(color) => color.rgb === primaryColor
+		)?.rgba!;
 		ctx.setLineDash([2, 5]);
 		ctx.rect(startX, startY, width, height);
 		ctx.stroke();
@@ -73,7 +78,7 @@ export const drawElipse = (
 			0,
 			2 * Math.PI
 		);
-		if (_store.isFilled) {
+		if (isFilled) {
 			ctx.fillStyle = primaryColor;
 			ctx.fill();
 		}

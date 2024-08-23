@@ -1,12 +1,13 @@
 import { clearCanvas } from "./clearCanvas";
+import { colors } from "../consts";
 import type { Store } from "../types";
 
 export const drawRect = (
 	canvas: HTMLCanvasElement,
 	ctx: CanvasRenderingContext2D,
-	_store: Store
+	store: Store
 ) => {
-	const { lineWidth, primaryColor } = _store;
+	const { lineWidth, primaryColor, isFilled } = store;
 
 	let isDrawingRect = false;
 
@@ -31,11 +32,15 @@ export const drawRect = (
 		height = e.offsetY - startY;
 
 		ctx.lineWidth = lineWidth;
-		ctx.strokeStyle = "rgba(0, 0, 0, 0.5)";
+		ctx.strokeStyle = colors.find(
+			(color) => color.rgb === primaryColor
+		)?.rgba!;
 		ctx.setLineDash([5, 5]);
 		ctx.strokeRect(startX, startY, width, height);
 
-		ctx.strokeStyle = "rgba(0, 0, 0, 0.3)";
+		ctx.strokeStyle = colors.find(
+			(color) => color.rgb === primaryColor
+		)?.rgba!;
 		ctx.setLineDash([2, 5]);
 		ctx.beginPath();
 		ctx.moveTo(startX, startY + height / 2);
@@ -52,7 +57,7 @@ export const drawRect = (
 		ctx.setLineDash([]);
 		ctx.beginPath();
 		ctx.rect(startX, startY, width, height);
-		if (_store.isFilled) {
+		if (isFilled) {
 			ctx.fillStyle = primaryColor;
 			ctx.fill();
 		}

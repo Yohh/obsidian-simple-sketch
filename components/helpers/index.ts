@@ -5,3 +5,4 @@ export { drawElipse } from "./drawElipse";
 export { drawGrid } from "./drawGrid";
 export { drawLine } from "./drawLine";
 export { rubber } from "./rubber";
+export { drawText } from "./drawText";

@@ -6,8 +6,10 @@ import {
 	drawRect,
 	rubber,
 	drawLine,
+	drawText,
 } from "../components/helpers/index";
 import Panel from "../components/sidePanel/Panel";
+import { colors, lines } from "./consts";
 import type { DrawMethod, Store } from "./types";
 
 const CANVAS_WIDTH = 827;
@@ -22,14 +24,16 @@ const CanvasSketch = () => {
 	const [drawMethod, setDrawMethod] = useState<DrawMethod>("hand");
 	const [isDrawing, setIsDrawing] = useState<boolean>(false);
 	const [isShowingGrid, setIsShowingGrid] = useState<boolean>(true);
+	const [isWritingText, setIsWritingText] = useState<boolean>(false);
 
 	const [store, setStore] = useState<Store>({
-		primaryColor: "rgb(0, 0, 0)",
-		lineWidth: 3,
+		primaryColor: colors[0].rgb,
+		lineWidth: lines[1],
 		isFilled: false,
 		isSaving: false,
 	});
 
+	// TODO : add a custom hook to handle the drawing methods
 	useEffect(() => {
 		const canvas = canvasRef.current;
 		if (!canvas) return;
@@ -56,12 +60,42 @@ const CanvasSketch = () => {
 	}, [drawMethod, isDrawing, store]);
 
 	useEffect(() => {
+		const canvas = canvasRef.current;
+		if (!canvas) return;
+		const ctx = canvas.getContext("2d");
+		if (!ctx) return;
+
+		const finalCanvas = finalCanvasRef.current;
+		if (!finalCanvas) return;
+		const finalCtx = finalCanvas.getContext("2d");
+		if (!finalCtx) return;
+
+		let cleanup: (() => void) | undefined;
+
+		if (drawMethod === "text") {
+			setIsWritingText(true);
+			cleanup = drawText(canvas, ctx, store, setIsWritingText);
+		}
+
+		return () => {
+			if (cleanup) cleanup();
+			finalCtx.drawImage(canvas, 0, 0);
+		};
+	}, [drawMethod, store, isWritingText]);
+
+	useEffect(() => {
 		const canvasGrid = canvasGridRef.current;
 		if (!canvasGrid) return;
 		const canvasGridCtx = canvasGrid.getContext("2d");
 		if (!canvasGridCtx) return;
 
-		drawGrid(canvasGridCtx, CANVAS_WIDTH, CANVAS_HEIGHT, GRID_GAP);
+		drawGrid(
+			canvasGrid,
+			canvasGridCtx,
+			CANVAS_WIDTH,
+			CANVAS_HEIGHT,
+			GRID_GAP
+		);
 	}, [isShowingGrid]);
 
 	return (
@@ -110,6 +144,7 @@ const CanvasSketch = () => {
 					style={{
 						position: "absolute",
 					}}
+					tabIndex={0}
 					onClick={() => setIsDrawing(!isDrawing)}
 				/>
 			</div>

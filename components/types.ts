@@ -5,4 +5,17 @@ export type Store = {
 	isSaving: boolean;
 };
 
-export type DrawMethod = "hand" | "line" | "rect" | "elipse" | "rubber";
+export type DrawMethod =
+	| "hand"
+	| "line"
+	| "rect"
+	| "elipse"
+	| "rubber"
+	| "text";
+
+export type Method = {
+	name: DrawMethod;
+	icon: string;
+	isFilled: boolean;
+	title: string;
+};
