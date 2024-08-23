@@ -46,11 +46,14 @@ export const drawElipse = (
 			0,
 			2 * Math.PI
 		);
+		if (isFilled) {
+			ctx.fillStyle = colors
+				.find((color) => color.rgb === primaryColor)
+				?.rgba.replace("0.5)", "0.3)")!;
+			ctx.fill();
+		}
 		ctx.stroke();
 
-		ctx.strokeStyle = colors.find(
-			(color) => color.rgb === primaryColor
-		)?.rgba!;
 		ctx.setLineDash([2, 5]);
 		ctx.rect(startX, startY, width, height);
 		ctx.stroke();
