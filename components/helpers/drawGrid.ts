@@ -1,10 +1,14 @@
+import { clearCanvas } from "./clearCanvas";
+
 export const drawGrid = (
+	canvas: HTMLCanvasElement,
 	canvasGridCtx: CanvasRenderingContext2D,
 	CANVAS_WIDTH: number,
 	CANVAS_HEIGHT: number,
 	GRID_GAP: number
 ) => {
-	canvasGridCtx.strokeStyle = "rgba(200, 200, 200, 0.1)";
+	clearCanvas(canvas, canvasGridCtx);
+	canvasGridCtx.strokeStyle = "rgba(200, 200, 200, 0.3)";
 	for (
 		let i = 0;
 		i < CANVAS_WIDTH;

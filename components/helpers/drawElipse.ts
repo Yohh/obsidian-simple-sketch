@@ -1,4 +1,5 @@
 import { clearCanvas } from "./clearCanvas";
+import { colors } from "../consts";
 import { Store } from "../types";
 
 export const drawElipse = (
@@ -30,7 +31,9 @@ export const drawElipse = (
 		width = e.offsetX - startX;
 		height = e.offsetY - startY;
 
-		ctx.strokeStyle = "rgba(0, 0, 0, 0.5)";
+		ctx.strokeStyle = colors.find(
+			(color) => color.rgb === primaryColor
+		)?.rgba!;
 		ctx.lineWidth = lineWidth;
 		ctx.setLineDash([5, 5]);
 		ctx.beginPath();
@@ -45,7 +48,9 @@ export const drawElipse = (
 		);
 		ctx.stroke();
 
-		ctx.strokeStyle = "rgba(0, 0, 0, 0.3)";
+		ctx.strokeStyle = colors.find(
+			(color) => color.rgb === primaryColor
+		)?.rgba!;
 		ctx.setLineDash([2, 5]);
 		ctx.rect(startX, startY, width, height);
 		ctx.stroke();

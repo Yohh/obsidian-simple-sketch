@@ -19,6 +19,7 @@ export const drawText = (
 	let cursorInterval: NodeJS.Timeout;
 
 	canvas.focus();
+	canvas.style.cursor = "text";
 
 	const draw = () => {
 		clearCanvas(canvas, ctx);
@@ -36,7 +37,7 @@ export const drawText = (
 
 		text = "";
 		startX = e.offsetX;
-		startY = e.offsetY;
+		startY = e.offsetY + 10;
 
 		cursorVisible = true;
 
@@ -61,6 +62,13 @@ export const drawText = (
 
 		if (e.key === "Backspace") {
 			text = text.slice(0, -1);
+		}
+
+		if (e.key === "escape") {
+			clearCanvas(canvas, ctx);
+			isDrawingText = false;
+			setIsWritingText(false);
+			return;
 		}
 
 		draw();
@@ -101,5 +109,6 @@ export const drawText = (
 		canvas.removeEventListener("keydown", handleKeyDown);
 		canvas.removeEventListener("keyup", handleKeyUp);
 		if (cursorInterval) clearInterval(cursorInterval);
+		canvas.style.cursor = "default";
 	};
 };

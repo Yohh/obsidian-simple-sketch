@@ -9,6 +9,7 @@ import {
 	drawText,
 } from "../components/helpers/index";
 import Panel from "../components/sidePanel/Panel";
+import { colors, lines } from "./consts";
 import type { DrawMethod, Store } from "./types";
 
 const CANVAS_WIDTH = 827;
@@ -26,8 +27,8 @@ const CanvasSketch = () => {
 	const [isWritingText, setIsWritingText] = useState<boolean>(false);
 
 	const [store, setStore] = useState<Store>({
-		primaryColor: "rgb(0, 0, 0)",
-		lineWidth: 3,
+		primaryColor: colors[0].rgb,
+		lineWidth: lines[1],
 		isFilled: false,
 		isSaving: false,
 	});
@@ -88,7 +89,13 @@ const CanvasSketch = () => {
 		const canvasGridCtx = canvasGrid.getContext("2d");
 		if (!canvasGridCtx) return;
 
-		drawGrid(canvasGridCtx, CANVAS_WIDTH, CANVAS_HEIGHT, GRID_GAP);
+		drawGrid(
+			canvasGrid,
+			canvasGridCtx,
+			CANVAS_WIDTH,
+			CANVAS_HEIGHT,
+			GRID_GAP
+		);
 	}, [isShowingGrid]);
 
 	return (

@@ -1,4 +1,4 @@
-import { Minus, Paintbrush } from "lucide-react";
+import { colors, lines } from "../consts";
 import type { Store } from "../types";
 
 type SetButtonsProps = {
@@ -25,114 +25,60 @@ export const SetButtons = ({ store, setStore }: SetButtonsProps) => {
 				flexDirection: "column",
 			}}
 		>
-			<button
-				onClick={() => handleSetPRimaryColor("rgb(0, 0, 0)")}
-				title="Black"
+			{colors.map((color) => (
+				<button
+					key={color.rgb}
+					onClick={() => handleSetPRimaryColor(color.rgb)}
+					title={color.rgb}
+					style={{
+						marginBottom: "0.5rem",
+					}}
+				>
+					<div
+						style={{
+							width: "24px",
+							height: "16px",
+							backgroundColor:
+								store.primaryColor === color.rgb
+									? color.rgb
+									: color.rgba,
+							borderRadius: "0.2rem",
+							border: `1px solid ${
+								store.primaryColor === color.rgb
+									? "white"
+									: "grey"
+							}`,
+						}}
+					/>
+				</button>
+			))}
+			<hr
 				style={{
-					marginBottom: "0.5rem",
-					color:
-						store.primaryColor === "rgb(0, 0, 0)"
-							? "rgb(0, 0, 0)"
-							: "rgb(100, 100, 100)",
-				}}
-			>
-				<Paintbrush size={24} />
-			</button>
-			<button
-				onClick={() => handleSetPRimaryColor("rgb(255, 0, 0)")}
-				title="Red"
-				style={{
-					marginBottom: "0.5rem",
-					color:
-						store.primaryColor === "rgb(255, 0, 0)"
-							? "rgb(255, 0, 0)"
-							: "rgba(255, 0, 0, 0.5)",
-				}}
-			>
-				<Paintbrush size={24} />
-			</button>
-			<button
-				onClick={() => handleSetPRimaryColor("rgb(0, 255, 0)")}
-				title="Green"
-				style={{
-					marginBottom: "0.5rem",
-					color:
-						store.primaryColor === "rgb(0, 255, 0)"
-							? "rgb(0, 255, 0)"
-							: "rgba(0, 255, 0, 0.5)",
-				}}
-			>
-				<Paintbrush size={24} />
-			</button>
-			<button
-				onClick={() => handleSetPRimaryColor("rgb(0, 0, 255)")}
-				title="Blue"
-				style={{
-					marginBottom: "0.5rem",
-					color:
-						store.primaryColor === "rgb(0, 0, 255)"
-							? "rgb(0, 0, 255)"
-							: "rgba(0, 0, 255, 0.5)",
-				}}
-			>
-				<Paintbrush size={24} />
-			</button>
-			<button
-				onClick={() => handleSetPRimaryColor("rgb(255, 165, 0)")}
-				title="Orange"
-				style={{
-					marginBottom: "0.5rem",
-					color:
-						store.primaryColor === "rgb(255, 165, 0)"
-							? "rgb(255, 165, 0)"
-							: "rgba(255, 165, 0, 0.5)",
-				}}
-			>
-				<Paintbrush size={24} />
-			</button>
-			<button
-				onClick={() => handleSetPRimaryColor("rgb(128, 0, 128)")}
-				title="Purple"
-				style={{
+					marginTop: "0.5rem",
 					marginBottom: "1rem",
-					color:
-						store.primaryColor === "rgb(128, 0, 128)"
-							? "rgb(128, 0, 128)"
-							: "rgba(128, 0, 128, 0.5)",
 				}}
-			>
-				<Paintbrush size={24} />
-			</button>
-			<button
-				onClick={() => handleSetLineWidth(1)}
-				title="1px"
-				style={{
-					marginBottom: "0.5rem",
-					color: store.lineWidth === 1 ? "white" : "grey",
-				}}
-			>
-				<Minus size={8} />
-			</button>
-			<button
-				onClick={() => handleSetLineWidth(3)}
-				title="3px"
-				style={{
-					marginBottom: "0.5rem",
-					color: store.lineWidth === 3 ? "white" : "grey",
-				}}
-			>
-				<Minus size={16} />
-			</button>
-			<button
-				onClick={() => handleSetLineWidth(5)}
-				title="5px"
-				style={{
-					marginBottom: "0.5rem",
-					color: store.lineWidth === 5 ? "white" : "grey",
-				}}
-			>
-				<Minus size={24} />
-			</button>
+			/>
+			{lines.map((line) => (
+				<button
+					key={line}
+					onClick={() => handleSetLineWidth(line)}
+					title={`${line}px`}
+					style={{
+						marginBottom: "0.5rem",
+						color: store.lineWidth === line ? "white" : "grey",
+					}}
+				>
+					<div
+						style={{
+							width: `${line * 4}px`,
+							height: `${line * 4}px`,
+							backgroundColor:
+								store.lineWidth === line ? "white" : "grey",
+							borderRadius: "50%",
+						}}
+					/>
+				</button>
+			))}
 		</div>
 	);
 };

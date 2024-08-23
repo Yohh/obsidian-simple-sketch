@@ -12,3 +12,10 @@ export type DrawMethod =
 	| "elipse"
 	| "rubber"
 	| "text";
+
+export type Method = {
+	name: DrawMethod;
+	icon: string;
+	isFilled: boolean;
+	title: string;
+};
