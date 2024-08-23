@@ -35,12 +35,15 @@ export const drawRect = (
 		ctx.strokeStyle = colors.find(
 			(color) => color.rgb === primaryColor
 		)?.rgba!;
+		ctx.fillStyle = colors
+			.find((color) => color.rgb === primaryColor)
+			?.rgba.replace("0.5)", "0.3)")!;
 		ctx.setLineDash([5, 5]);
 		ctx.strokeRect(startX, startY, width, height);
+		if (isFilled) {
+			ctx.fillRect(startX, startY, width, height);
+		}
 
-		ctx.strokeStyle = colors.find(
-			(color) => color.rgb === primaryColor
-		)?.rgba!;
 		ctx.setLineDash([2, 5]);
 		ctx.beginPath();
 		ctx.moveTo(startX, startY + height / 2);
