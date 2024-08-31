@@ -2,6 +2,7 @@ import { StrictMode } from "react";
 import { ItemView, Plugin, WorkspaceLeaf } from "obsidian";
 import { Root, createRoot } from "react-dom/client";
 import CanvasSketch from "./components/CanvasSketch";
+import { AppContext } from "context";
 
 interface SimpleSketchSettings {
 	mySetting: string;
@@ -64,9 +65,11 @@ class Sketch extends ItemView {
 	async onOpen() {
 		this.root = createRoot(this.containerEl.children[1]);
 		this.root.render(
-			<StrictMode>
-				<CanvasSketch />
-			</StrictMode>
+			<AppContext.Provider value={this.app}>
+				<StrictMode>
+					<CanvasSketch />
+				</StrictMode>
+			</AppContext.Provider>
 		);
 	}
 
