@@ -5,7 +5,9 @@ import type { Store } from "../types";
 export const drawLine = (
 	canvas: HTMLCanvasElement,
 	ctx: CanvasRenderingContext2D,
-	store: Store
+	finalCtx: CanvasRenderingContext2D,
+	store: Store,
+	saveHistory: (ctx: CanvasRenderingContext2D) => void
 ) => {
 	const { lineWidth, primaryColor } = store;
 
@@ -13,6 +15,8 @@ export const drawLine = (
 
 	let startX = 0;
 	let startY = 0;
+
+	clearCanvas(canvas, ctx);
 
 	const handleMouseDown = (e: MouseEvent) => {
 		isDrawingLine = true;
@@ -46,6 +50,8 @@ export const drawLine = (
 		ctx.stroke();
 
 		isDrawingLine = false;
+		finalCtx.drawImage(canvas, 0, 0);
+		saveHistory(finalCtx);
 	};
 
 	const handleMouseOut = () => {

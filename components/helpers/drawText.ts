@@ -4,7 +4,9 @@ import type { Store } from "../types";
 export const drawText = (
 	canvas: HTMLCanvasElement,
 	ctx: CanvasRenderingContext2D,
+	finalCtx: CanvasRenderingContext2D,
 	store: Store,
+	saveHistory: (ctx: CanvasRenderingContext2D) => void,
 	setIsWritingText: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
 	const { primaryColor, lineWidth } = store;
@@ -17,6 +19,8 @@ export const drawText = (
 	let startY = 0;
 	let cursorVisible = false;
 	let cursorInterval: NodeJS.Timeout;
+
+	clearCanvas(canvas, ctx);
 
 	canvas.focus();
 	canvas.style.cursor = "text";
@@ -68,6 +72,8 @@ export const drawText = (
 			clearCanvas(canvas, ctx);
 			isDrawingText = false;
 			setIsWritingText(false);
+			finalCtx.drawImage(canvas, 0, 0);
+			saveHistory(finalCtx);
 			return;
 		}
 
@@ -82,6 +88,7 @@ export const drawText = (
 				clearCanvas(canvas, ctx);
 				isDrawingText = false;
 				setIsWritingText(false);
+				saveHistory(finalCtx);
 				return;
 			}
 
@@ -97,6 +104,8 @@ export const drawText = (
 			text = "";
 			isDrawingText = false;
 			setIsWritingText(false);
+			finalCtx.drawImage(canvas, 0, 0);
+			saveHistory(finalCtx);
 		}
 	};
 

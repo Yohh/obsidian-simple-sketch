@@ -1,4 +1,11 @@
-import { Trash2, Save, Download, Grid2X2 } from "lucide-react";
+import {
+	Trash2,
+	IterationCw,
+	IterationCcw,
+	Grid2X2,
+	Save,
+	Download,
+} from "lucide-react";
 import DrawButtons from "./DrawButtons";
 import SetButtons from "./SetButtons";
 import { clearCanvas } from "components/helpers";
@@ -15,6 +22,10 @@ type PanelProps = {
 	setDrawMethod: React.Dispatch<React.SetStateAction<DrawMethod>>;
 	store: Store;
 	setStore: React.Dispatch<React.SetStateAction<Store>>;
+	history: ImageData[];
+	setHistory: React.Dispatch<React.SetStateAction<ImageData[]>>;
+	historyIndex: number;
+	setHistoryIndex: React.Dispatch<React.SetStateAction<number>>;
 };
 
 const Panel = ({
@@ -26,8 +37,32 @@ const Panel = ({
 	setDrawMethod,
 	store,
 	setStore,
+	history,
+	setHistory,
+	historyIndex,
+	setHistoryIndex,
 }: PanelProps) => {
 	const { vault } = useApp() as App;
+
+	const undo = (ctx: CanvasRenderingContext2D) => {
+		if (historyIndex === 0) {
+			clearCanvas(finalCanvas!, ctx);
+			setHistoryIndex(-1);
+		}
+		if (historyIndex > 0) {
+			const newIndex = historyIndex - 1;
+			setHistoryIndex(newIndex);
+			ctx.putImageData(history[newIndex], 0, 0);
+		}
+	};
+
+	const redo = (ctx: CanvasRenderingContext2D) => {
+		if (historyIndex < history.length - 1) {
+			const newIndex = historyIndex + 1;
+			setHistoryIndex(newIndex);
+			ctx.putImageData(history[newIndex], 0, 0);
+		}
+	};
 
 	const handleReset = () => {
 		if (!canvas) return;
@@ -40,6 +75,9 @@ const Panel = ({
 		const finalCtx = finalCanvas.getContext("2d");
 		if (!finalCtx) return;
 		clearCanvas(finalCanvas, finalCtx);
+
+		setHistory([]);
+		setHistoryIndex(-1);
 	};
 
 	const saveCanvas = () => {
@@ -134,6 +172,42 @@ const Panel = ({
 				}}
 			>
 				<Save size={24} />
+			</button>
+			<button
+				onClick={() =>
+					undo(
+						finalCanvas?.getContext(
+							"2d"
+						) as CanvasRenderingContext2D
+					)
+				}
+				title="Undo"
+				disabled={historyIndex === -1}
+				style={{
+					position: "absolute",
+					top: "1rem",
+					left: "4.5rem",
+				}}
+			>
+				<IterationCw size={24} />
+			</button>
+			<button
+				onClick={() =>
+					redo(
+						finalCanvas?.getContext(
+							"2d"
+						) as CanvasRenderingContext2D
+					)
+				}
+				title="Redo"
+				disabled={historyIndex >= history.length - 1}
+				style={{
+					position: "absolute",
+					top: "1rem",
+					left: "8rem",
+				}}
+			>
+				<IterationCcw size={24} />
 			</button>
 			<button
 				onClick={downloadCanvas}
