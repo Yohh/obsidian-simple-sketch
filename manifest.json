@@ -1,7 +1,7 @@
 {
 	"id": "simple-sketch",
 	"name": "simple-sketch",
-	"version": "1.0.7",
+	"version": "1.0.6",
 	"minAppVersion": "0.15.0",
 	"description": "A simple sketch plugin.",
 	"author": "Yoh",
