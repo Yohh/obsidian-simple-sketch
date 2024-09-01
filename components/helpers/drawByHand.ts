@@ -1,9 +1,12 @@
 import { Store } from "../types";
+import { clearCanvas } from "./clearCanvas";
 
 export const drawByHand = (
 	canvas: HTMLCanvasElement,
 	ctx: CanvasRenderingContext2D,
-	store: Store
+	finalCtx: CanvasRenderingContext2D,
+	store: Store,
+	saveHistory: (ctx: CanvasRenderingContext2D) => void
 ) => {
 	const { lineWidth, primaryColor } = store;
 
@@ -11,6 +14,8 @@ export const drawByHand = (
 
 	let lastX = 0;
 	let lastY = 0;
+
+	clearCanvas(canvas, ctx);
 
 	const handleMouseDown = (e: MouseEvent) => {
 		isDrawingByHand = true;
@@ -45,6 +50,8 @@ export const drawByHand = (
 
 	const handleMouseUp = () => {
 		isDrawingByHand = false;
+		finalCtx.drawImage(canvas, 0, 0);
+		saveHistory(finalCtx);
 	};
 
 	const handleMouseOut = () => {

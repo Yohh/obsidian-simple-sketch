@@ -5,7 +5,9 @@ import { Store } from "../types";
 export const drawElipse = (
 	canvas: HTMLCanvasElement,
 	ctx: CanvasRenderingContext2D,
-	store: Store
+	finalCtx: CanvasRenderingContext2D,
+	store: Store,
+	saveHistory: (ctx: CanvasRenderingContext2D) => void
 ) => {
 	const { lineWidth, primaryColor, isFilled } = store;
 
@@ -15,6 +17,8 @@ export const drawElipse = (
 	let startY = 0;
 	let width = 0;
 	let height = 0;
+
+	clearCanvas(canvas, ctx);
 
 	const handleMouseDown = (e: MouseEvent) => {
 		isDrawingElipse = true;
@@ -92,6 +96,8 @@ export const drawElipse = (
 		width = 0;
 		height = 0;
 		isDrawingElipse = false;
+		finalCtx.drawImage(canvas, 0, 0);
+		saveHistory(finalCtx);
 	};
 
 	const handleMouseOut = () => {

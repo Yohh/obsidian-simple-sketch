@@ -5,7 +5,9 @@ import type { Store } from "../types";
 export const drawRect = (
 	canvas: HTMLCanvasElement,
 	ctx: CanvasRenderingContext2D,
-	store: Store
+	finalCtx: CanvasRenderingContext2D,
+	store: Store,
+	saveHistory: (ctx: CanvasRenderingContext2D) => void
 ) => {
 	const { lineWidth, primaryColor, isFilled } = store;
 
@@ -15,6 +17,8 @@ export const drawRect = (
 	let startY = 0;
 	let width = 0;
 	let height = 0;
+
+	clearCanvas(canvas, ctx);
 
 	const handleMouseDown = (e: MouseEvent) => {
 		isDrawingRect = true;
@@ -72,6 +76,8 @@ export const drawRect = (
 		height = 0;
 
 		isDrawingRect = false;
+		finalCtx.drawImage(canvas, 0, 0);
+		saveHistory(finalCtx);
 	};
 
 	const handleMouseOut = () => {
