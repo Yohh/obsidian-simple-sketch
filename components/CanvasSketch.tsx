@@ -25,6 +25,8 @@ const CanvasSketch = () => {
 	const [isDrawing, setIsDrawing] = useState<boolean>(false);
 	const [isShowingGrid, setIsShowingGrid] = useState<boolean>(true);
 	const [isWritingText, setIsWritingText] = useState<boolean>(false);
+	const [history, setHistory] = useState<ImageData[]>([]);
+	const [historyIndex, setHistoryIndex] = useState<number>(-1);
 
 	const [store, setStore] = useState<Store>({
 		primaryColor: colors[0].rgb,
@@ -33,7 +35,19 @@ const CanvasSketch = () => {
 		isSaving: false,
 	});
 
-	// TODO : add a custom hook to handle the drawing methods
+	const saveHistory = (ctx: CanvasRenderingContext2D) => {
+		const imageData = ctx.getImageData(
+			0,
+			0,
+			ctx.canvas.width,
+			ctx.canvas.height
+		);
+		const newHistory = history.slice(0, historyIndex + 1);
+		newHistory.push(imageData);
+		setHistory(newHistory);
+		setHistoryIndex(newHistory.length - 1);
+	};
+
 	useEffect(() => {
 		const canvas = canvasRef.current;
 		if (!canvas) return;
@@ -47,17 +61,21 @@ const CanvasSketch = () => {
 
 		let cleanup: (() => void) | undefined;
 
-		if (drawMethod === "rubber") cleanup = rubber(canvas, ctx, finalCtx);
-		if (drawMethod === "hand") cleanup = drawByHand(canvas, ctx, store);
-		if (drawMethod === "line") cleanup = drawLine(canvas, ctx, store);
-		if (drawMethod === "rect") cleanup = drawRect(canvas, ctx, store);
-		if (drawMethod === "elipse") cleanup = drawElipse(canvas, ctx, store);
+		if (drawMethod === "rubber")
+			cleanup = rubber(canvas, ctx, finalCtx, saveHistory);
+		if (drawMethod === "hand")
+			cleanup = drawByHand(canvas, ctx, finalCtx, store, saveHistory);
+		if (drawMethod === "line")
+			cleanup = drawLine(canvas, ctx, finalCtx, store, saveHistory);
+		if (drawMethod === "rect")
+			cleanup = drawRect(canvas, ctx, finalCtx, store, saveHistory);
+		if (drawMethod === "elipse")
+			cleanup = drawElipse(canvas, ctx, finalCtx, store, saveHistory);
 
 		return () => {
 			if (cleanup) cleanup();
-			finalCtx.drawImage(canvas, 0, 0);
 		};
-	}, [drawMethod, isDrawing, store]);
+	}, [drawMethod, isDrawing, store, history, historyIndex]);
 
 	useEffect(() => {
 		const canvas = canvasRef.current;
@@ -74,7 +92,14 @@ const CanvasSketch = () => {
 
 		if (drawMethod === "text") {
 			setIsWritingText(true);
-			cleanup = drawText(canvas, ctx, store, setIsWritingText);
+			cleanup = drawText(
+				canvas,
+				ctx,
+				finalCtx,
+				store,
+				saveHistory,
+				setIsWritingText
+			);
 		}
 
 		return () => {
@@ -157,6 +182,10 @@ const CanvasSketch = () => {
 				setDrawMethod={setDrawMethod}
 				store={store}
 				setStore={setStore}
+				history={history}
+				setHistory={setHistory}
+				historyIndex={historyIndex}
+				setHistoryIndex={setHistoryIndex}
 			/>
 		</div>
 	);

@@ -3,7 +3,8 @@ import { clearCanvas } from "./clearCanvas";
 export const rubber = (
 	canvas: HTMLCanvasElement,
 	ctx: CanvasRenderingContext2D,
-	finalCtx: CanvasRenderingContext2D
+	finalCtx: CanvasRenderingContext2D,
+	saveHistory: (ctx: CanvasRenderingContext2D) => void
 ) => {
 	let startX = 0;
 	let startY = 0;
@@ -29,6 +30,7 @@ export const rubber = (
 
 	const handleMouseUp = () => {
 		clearCanvas(canvas, ctx);
+		saveHistory(finalCtx);
 	};
 
 	const handleMouseOut = () => {
