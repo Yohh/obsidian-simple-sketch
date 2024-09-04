@@ -4,6 +4,8 @@
 
 Simple Sketch is a plugin for [Obsidian](https://obsidian.md). It allows users to create simple sketches in a dedicated view with a minimal, convenient interface that emphasizes productivity over completeness.
 
+![demo](./assets/demo.gif)
+
 ## Installation
 
 ### For Contributors
@@ -41,13 +43,34 @@ Simple Sketch is a plugin for [Obsidian](https://obsidian.md). It allows users t
 
     ```sh
     git clone https://github.com/your-repo/simple-sketch-plugin.git
+    cd simple-sketch-plugin
+    ```
+
+2. Install the dependencies:
+
+    ```sh
+    npm install
+    ```
+
+3. Build the project:
+
+    ```sh
+    npm run build
     ```
 
 ## Usage
 
 1. Open Obsidian and navigate to the settings.
-2. Go to the "Community plugins" section and enable the Simple Sketch Plugin.
-3. Use the plugin to create and edit sketches.
+2. Go to the "Community plugins" section and enable the "Simple Sketch" plugin.
+3. Once enabled, you will see a new ribbon icon with a pencil and ruler.
+4. Click on the ribbon icon to open the Simple Sketch view.
+5. In the Simple Sketch view, you can:
+    - Draw freehand sketches.
+    - Generate shapes like lines, rectangles, and ellipses.
+    - Add text to your sketches.
+    - Save your sketches in the vault or download them as images.
+
+Enjoy creating your sketches with Simple Sketch!
 
 ## Contribution
 
