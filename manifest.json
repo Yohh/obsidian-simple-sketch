@@ -1,9 +1,9 @@
 {
 	"id": "simple-sketch",
 	"name": "simple-sketch",
-	"version": "1.0.7",
+	"version": "1.0.8",
 	"minAppVersion": "0.15.0",
-	"description": "A simple sketch plugin.",
+	"description": "Create minimalist sketches in a dedicated view, draw with a pencil, generate shapes, add text, save it to the vault or download it as an image.",
 	"author": "Yoh",
 	"authorUrl": "https://github.com/Yohh",
 	"fundingUrl": "https://buymeacoffee.com/yohh",
