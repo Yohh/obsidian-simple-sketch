@@ -39,24 +39,9 @@ Simple Sketch is a plugin for [Obsidian](https://obsidian.md). It allows users t
 
 ### For Users
 
-1. Clone the repository in your obsidian plugins folder:
+1. download the `main.js` and `manifest.json` from the last release
 
-    ```sh
-    git clone git@github.com:Yohh/obsidian-simple-sketch.git
-    cd simple-sketch-plugin
-    ```
-
-2. Install the dependencies:
-
-    ```sh
-    npm install
-    ```
-
-3. Build the project:
-
-    ```sh
-    npm run build
-    ```
+2. copy them in a `simple-sketch` folder in your local `plugins` folder
 
 ## Usage
 
