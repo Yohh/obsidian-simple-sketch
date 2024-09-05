@@ -87,8 +87,6 @@ Contributions are welcome! Please follow these steps to contribute:
 I am actively working on the following features and improvements:
 
 -   **Enhanced Drawing Tools**: Adding more shapes and tools for better sketching capabilities.
--   **Undo/Redo Functionality**: Implementing undo and redo actions to improve user experience.
--   **Save in vault**: Allow to save the sketch in vault directory.
 -   **bugfix**: Fixing issues related to drawing precision and performance.
 
 This plugin is a contribution to the Obsidian community, and I work on it in my free time. As a result, I may be slow to react if anything is asked. Thank you for your understanding and patience.
