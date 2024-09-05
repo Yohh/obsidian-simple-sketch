@@ -42,7 +42,7 @@ Simple Sketch is a plugin for [Obsidian](https://obsidian.md). It allows users t
 1. Clone the repository in your obsidian plugins folder:
 
     ```sh
-    git clone https://github.com/your-repo/simple-sketch-plugin.git
+    git clone git@github.com:Yohh/obsidian-simple-sketch.git
     cd simple-sketch-plugin
     ```
 
