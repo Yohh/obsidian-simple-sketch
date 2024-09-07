@@ -1,0 +1,30 @@
+name: "⚒️ Feature request"
+description: Suggest a new feature
+title: "[Feature Request]: "
+labels: [feature-request]
+body:
+    - type: markdown
+      attributes:
+          value: |
+              Thanks for contributing!
+              before submitting a bug report, please check if an issue already exists for it.
+
+    - type: textarea
+      id: description
+      attributes:
+          label: What would you like to see?
+          value: |
+              - I would like to see ...
+              - It would be great if we could ...
+      validations:
+          required: true
+
+    - type: textarea
+      id: motivation
+      attributes:
+          label: What problem would this feature solve?
+          value: |
+              - This feature would help me ...
+              - I need this feature because ...
+      validations:
+          required: true

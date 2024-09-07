@@ -1,0 +1,33 @@
+name: "🪲 Bug Report"
+description: Report a bug encountered in Simple Sketch
+title: "[Bug]: "
+labels: [bug]
+body:
+    - type: markdown
+      attributes:
+          value: |
+              Thanks for contributing!
+              before submitting a bug report, please check if an issue already exists for it.
+
+    - type: textarea
+      id: problem
+      attributes:
+          label: What happened?
+          description: |
+              what did you do? what happened? what did you expect to happen?
+              images and videos are welcome!
+      validations:
+          required: true
+
+    - type: dropdown
+      id: severity
+      attributes:
+          label: How severe is this bug?
+          description: |
+              how much does this bug impact your experience?
+          options:
+              - Low (minor inconvenience)
+              - Medium (affects my workflow)
+              - High (blocks my work)
+      validations:
+          required: true
