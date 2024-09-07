@@ -7,7 +7,7 @@ body:
       attributes:
           value: |
               ### Thanks for contributing!
-              **before submitting a feature request, __please check if an issue already exists for it__.**
+              **before submitting a feature request, <ins>please check if an issue already exists for it</ins>.**
 
     - type: textarea
       id: description
