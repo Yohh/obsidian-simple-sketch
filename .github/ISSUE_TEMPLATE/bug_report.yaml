@@ -6,8 +6,8 @@ body:
     - type: markdown
       attributes:
           value: |
-              Thanks for contributing!
-              before submitting a bug report, please check if an issue already exists for it.
+              ### Thanks for contributing!
+              **before submitting a bug report, __please check if an issue already exists for it__.**
 
     - type: textarea
       id: problem
