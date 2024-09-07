@@ -7,7 +7,7 @@ body:
       attributes:
           value: |
               Thanks for contributing!
-              before submitting a bug report, please check if an issue already exists for it.
+              before submitting a feature request, please check if an issue already exists for it.
 
     - type: textarea
       id: description
