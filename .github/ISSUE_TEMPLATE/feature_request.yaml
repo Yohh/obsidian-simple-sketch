@@ -13,7 +13,7 @@ body:
       id: description
       attributes:
           label: What would you like to see?
-          value: |
+          placeholder: |
               - I would like to see ...
               - It would be great if we could ...
       validations:
@@ -23,7 +23,7 @@ body:
       id: motivation
       attributes:
           label: What problem would this feature solve?
-          value: |
+          placeholder: |
               - This feature would help me ...
               - I need this feature because ...
       validations:
