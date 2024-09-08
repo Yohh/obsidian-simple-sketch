@@ -39,7 +39,7 @@ Simple Sketch is a plugin for [Obsidian](https://obsidian.md). It allows users t
 
 ### For Users
 
-1. download the `main.js` and `manifest.json` from the last release
+1. download the `main.js` and `manifest.json` from the last [release](https://github.com/Yohh/obsidian-simple-sketch/releases)
 
 2. copy them in a `simple-sketch` folder in your local `plugins` folder
 
