@@ -4,9 +4,10 @@ import type { Store } from "../types";
 type SetButtonsProps = {
 	store: Store;
 	setStore: React.Dispatch<React.SetStateAction<Store>>;
+	width: number;
 };
 
-export const SetButtons = ({ store, setStore }: SetButtonsProps) => {
+export const SetButtons = ({ store, setStore, width }: SetButtonsProps) => {
 	const handleSetPRimaryColor = (color: string) => {
 		setStore((prev) => ({ ...prev, primaryColor: color }));
 	};
@@ -20,7 +21,8 @@ export const SetButtons = ({ store, setStore }: SetButtonsProps) => {
 			style={{
 				position: "absolute",
 				top: "1rem",
-				right: "1rem",
+				right: `${width ? null : "1rem"}`,
+				left: `${width ? width - 60 + "px" : null}`,
 				display: "flex",
 				flexDirection: "column",
 			}}

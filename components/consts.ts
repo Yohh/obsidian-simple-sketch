@@ -78,4 +78,4 @@ export const colors = [
 	},
 ];
 
-export const lines = [1, 3, 5];
+export const lines = [1, 2, 3, 4, 5];

@@ -55,15 +55,7 @@ const DrawButtons = ({
 	};
 
 	return (
-		<div
-			style={{
-				position: "absolute",
-				top: "6.5rem",
-				left: "1rem",
-				display: "flex",
-				flexDirection: "column",
-			}}
-		>
+		<>
 			<hr
 				style={{
 					marginTop: "0",
@@ -90,7 +82,7 @@ const DrawButtons = ({
 					{setIcon(method.icon, method.isFilled)}
 				</button>
 			))}
-		</div>
+		</>
 	);
 };
 
