@@ -1,8 +1,9 @@
-# Simple Sketch
+# Simple Sketch <p align="end"><img src="https://img.shields.io/github/downloads/yohh/obsidian-simple-sketch/latest/total"/></p>
 
 ## Overview
 
 Simple Sketch is a plugin for [Obsidian](https://obsidian.md). It allows users to create simple sketches in a dedicated view with a minimal, convenient interface that emphasizes productivity over completeness.
+
 
 ![demo](./assets/demo.gif)
 
