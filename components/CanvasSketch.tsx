@@ -240,6 +240,9 @@ const CanvasSketch = ({ filePath }: CanvasSketchProps) => {
 						) as CanvasRenderingContext2D
 					);
 				}
+				if (e.key === "G" && e.ctrlKey && e.shiftKey) {
+					setIsShowingGrid(!isShowingGrid);
+				}
 			}}
 		>
 			<div

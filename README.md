@@ -52,7 +52,9 @@ Simple Sketch is a plugin for [Obsidian](https://obsidian.md). It allows users t
 1. Open Obsidian and navigate to the settings.
 2. Go to the "Community plugins" section and enable the "Simple Sketch" plugin.
 3. Once enabled, you will see a new ribbon icon with a pencil and ruler.
-4. Click on the ribbon icon to open the Simple Sketch view.
+4. Click on the ribbon icon to open the Simple Sketch view \
+   **or**\
+   Right-click on an image file and select `open with simple sketch`
 5. In the Simple Sketch view, you can:
     - Draw freehand sketches.
     - Generate shapes like lines, rectangles, and ellipses.
@@ -60,6 +62,27 @@ Simple Sketch is a plugin for [Obsidian](https://obsidian.md). It allows users t
     - Save your sketches in the vault or download them as images.
 
 Enjoy creating your sketches with Simple Sketch!
+
+## Controls
+
+|                         Icon                          |     Functionality     |   Key Binding    |
+| :---------------------------------------------------: | :-------------------: | :--------------: |
+|       ![Pencil](./assets/icons/pencil-line.png)       |     Draw by hand      |       none       |
+|           ![Line](./assets/icons/slash.png)           |       Draw line       |       none       |
+|        ![Rectangle](./assets/icons/square.png)        |    Draw rectangle     |       none       |
+| ![Filled Rectangle](./assets/icons/filled-square.png) | Draw filled rectangle |       none       |
+|         ![Ellipse](./assets/icons/circle.png)         |     Draw ellipse      |       none       |
+|  ![Filled Ellipse](./assets/icons/filled-circle.png)  |  Draw filled ellipse  |       none       |
+|           ![Text](./assets/icons/type.png)            |       Add text        |       none       |
+|         ![Eraser](./assets/icons/eraser.png)          |         Erase         |       none       |
+|       ![Undo](./assets/icons/iteration-cw.png)        |         Undo          |     ctrl + z     |
+|       ![Redo](./assets/icons/iteration-ccw.png)       |         Redo          | ctrl + shift + z |
+|         ![Grid](./assets/icons/grid-2x2.png)          |      Toggle grid      | ctrl + shift + g |
+|           ![Save](./assets/icons/save.png)            | Save sketch in vault  |       none       |
+|       ![Download](./assets/icons/download.png)        |    Download sketch    |       none       |
+|         ![Trash](./assets/icons/trash-2.png)          |     Reset canvas      |       none       |
+
+_Icons are imported from [Lucide](https://lucide.dev/) to be consistent with the Obsidian interface._
 
 ## Contribution
 
