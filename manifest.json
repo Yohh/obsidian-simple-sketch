@@ -1,7 +1,7 @@
 {
 	"id": "simple-sketch",
 	"name": "simple-sketch",
-	"version": "1.0.8",
+	"version": "1.0.9",
 	"minAppVersion": "0.15.0",
 	"description": "Create minimalist sketches in a dedicated view, draw with a pencil, generate shapes, add text, save it to the vault or download it as an image.",
 	"author": "Yoh",
