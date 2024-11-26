@@ -1,4 +1,4 @@
-# Simple Sketch <p align="end"><img src="https://img.shields.io/github/downloads/yohh/obsidian-simple-sketch/latest/total"/></p>
+# Simple Sketch
 
 ## Overview
 
